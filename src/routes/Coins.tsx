@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { TailSpin } from "react-loader-spinner";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isDarkAtom } from "../atoms";
 var randomColor = require("randomcolor");
 
@@ -63,16 +63,18 @@ const Img = styled.img`
 `;
 
 const Toggle = styled.div`
-  position: absolute;
-  right: 30px;
-  top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 35px;
   button {
+    margin: 0 auto;
     border: 1px solid ${(props) => props.theme.textColor};
     color: ${(props) => props.theme.textColor};
     border-radius: 15px;
     background-color: transparent;
-    height: 30px;
-    width: 140px;
+    min-height: 30px;
+    min-width: 140px;
     &:hover {
       background-color: #dee2fc;
     }
@@ -92,6 +94,7 @@ interface CoinInterface {
 function Coins() {
   // Recoil : state management tool
   const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const isDark = useRecoilValue(isDarkAtom);
   const toggleDarkAtom = () => {
     setDarkAtom((prev) => !prev);
   };
@@ -117,14 +120,16 @@ function Coins() {
   return (
     <Container>
       <Helmet>
-        <title>Coins</title>
+        <title>Coins Tracker</title>
       </Helmet>
       <Header>
-        <Title>Coins</Title>
-        <Toggle>
-          <button onClick={toggleDarkAtom}>Toggle Mode</button>
-        </Toggle>
+        <Title>Coins Tracker</Title>
       </Header>
+      <Toggle>
+        <button onClick={toggleDarkAtom}>
+          {isDark ? "Light Mode" : "Dark Mode"}
+        </button>
+      </Toggle>
       {isLoading ? (
         <Loader>
           <TailSpin height="200" width="200" color={randomColor()}></TailSpin>
