@@ -1,6 +1,8 @@
 import { useQuery } from "react-query";
 import { fetchCoinHistory, fetchCoinTickers } from "../api";
 import styled from "styled-components";
+import { TailSpin } from "react-loader-spinner";
+var randomColor = require("randomcolor");
 
 interface ChartProps {
   coinId: string;
@@ -84,6 +86,14 @@ const LatestInfo = styled.div`
   }
 `;
 
+const Loader = styled.span`
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+`;
+
 function Chart({ coinId }: ChartProps) {
   const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(coinId)
@@ -127,7 +137,9 @@ function Chart({ coinId }: ChartProps) {
   return (
     <div>
       {isLoading ? (
-        "Loading Chart..."
+        <Loader>
+          <TailSpin height="200" width="200" color={randomColor()}></TailSpin>
+        </Loader>
       ) : (
         <>
           <PriceWapper>
