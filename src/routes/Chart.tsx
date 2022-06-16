@@ -83,7 +83,9 @@ function Chart({ coinId }: ChartProps) {
               labels: {
                 show: false,
               },
-              categories: data?.map((price) => price.time_close ?? []),
+              categories: data?.map(
+                (price) => (price.time_close as any) * 1000 ?? []
+              ),
             },
             fill: {
               type: "gradient",

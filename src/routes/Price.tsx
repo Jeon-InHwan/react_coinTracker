@@ -144,18 +144,18 @@ function Chart({ coinId }: ChartProps) {
         <>
           <PriceWapper>
             <LatestInfo>
-              <span>Highest Price In Last 7 Days</span>
+              <span>Highest Price In Last 21 Days</span>
               <span>{`$${highestValue?.toFixed(3)}`}</span>
             </LatestInfo>
             <LatestInfo>
-              <span>Lowest Price In Last 7 Days</span>
+              <span>Lowest Price In Last 21 Days</span>
               <span>{`$${lowestValue?.toFixed(3)}`}</span>
             </LatestInfo>
           </PriceWapper>
           <PriceWapper2>
             <LatestInfo>
               <span>
-                The Gap between Highest Price In Last 7 Days And Now Price
+                The Gap between Highest Price In Last 21 Days And Now Price
               </span>
               <span>{`$${gapBtw1?.toFixed(3)}`}</span>
             </LatestInfo>
@@ -163,7 +163,7 @@ function Chart({ coinId }: ChartProps) {
           <PriceWapper3>
             <LatestInfo>
               <span>
-                The Gap between Lowest Price In Last 7 Days And Now Price
+                The Gap between Lowest Price In Last 21 Days And Now Price
               </span>
               <span>{`$${gapBtw2?.toFixed(3)}`}</span>
             </LatestInfo>
